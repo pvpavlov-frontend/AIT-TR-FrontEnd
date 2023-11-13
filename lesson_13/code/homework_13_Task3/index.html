@@ -1,0 +1,43 @@
+<!-- Задание 3 Задание: Создание и обработка промисов Создайте функцию showNumbers(seconds), 
+которая принимает число секунд и возвращает промис. 
+Промис должен выполняться через указанное количество секунд и возвращать сообщение 
+"Прошло {seconds} секунд(ы)".
+Используйте setTimeout внутри промиса для создания задержки выполнения. Создайте несколько экземпляров функции wait с разными значениями секунд и выведите результат выполнения каждого промиса. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <button onclick="showNumbers(0)"> 
+            showNumbers(0) 
+        </button>
+    <button onclick="showNumbers(3)"> 
+            showNumbers(3) 
+        </button>
+    <button onclick="showNumbers(6)"> 
+            showNumbers(6) 
+        </button>
+    <h2 id="output"></h2>
+    <script>
+        let output = document.getElementById('output');
+        async function showNumbers(seconds) {
+            let newPromise =
+                new Promise(function(resolve, reject) {
+                    output.innerHTML = "";
+                    setTimeout(function() {
+                        resolve(`Прошло ${seconds} секунд(ы)`);
+                    }, seconds * 1000);
+                });
+            let result = await newPromise;
+            output.innerHTML = result;
+        }
+    </script>
+</body>
+
+</html>
